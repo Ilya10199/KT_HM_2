@@ -1,10 +1,8 @@
-package ru.netology
-
 import kotlin.math.max
 
 fun main() {
     agoToText("ilya", 182810)
-    println(calculationCommission("Mastercard", 0, 150_000))
+    println(calculationCommission("Visa", 0, 150_000))
 }
 
 fun agoToText(name: String, time: Int) {
@@ -47,9 +45,10 @@ fun calculationCommission(card: String = "Mir", previousAmount: Int = 0, amount:
     if (dayLimit < amount || monthlyLimit < amount + previousAmount) return errorLimit
 
     return when (card) {
-        "Mastercard" -> if (monthlyLimitMasterCard > amount + previousAmount) {
+        "Mastercard" -> if (monthlyLimitMasterCard < amount + previousAmount) {
             (((amount + previousAmount) - monthlyLimitMasterCard) * 0.006 + 20).toInt()
         } else 0
+
         "Visa" -> max(35, (amount * 0.0075).toInt())
         "Mir" -> 0
         else -> errorCard

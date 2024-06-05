@@ -1,8 +1,9 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.9.21'
+    id 'jacoco'
 }
 
-group = 'ru.netology'
+
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -10,12 +11,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    implementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation 'junit:junit:4.13.2'
 }
 
-test {
-    useJUnitPlatform()
-}
+
 kotlin {
     jvmToolchain(21)
 }
